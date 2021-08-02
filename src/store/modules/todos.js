@@ -20,7 +20,13 @@ const actions = {
         console.log(res.data);
         commit('setTodos', res.data)
     },
-    // Add a new todo 
+    // Add a new todo, call a request to jsonplaceholder and call newTodo mutation. Every new todos will have a completed property of false
+    async addTodo({commit}, title){
+        const response = await axios.post('https://jsonplaceholder.typicode.com/todos', {
+            title, completed:false
+        })
+        commit('newTodo',response.data)
+    }
 }
 
 // Create mutations to change state
@@ -28,7 +34,12 @@ const mutations = {
     // Change the todos state (finally we can do it)
     setTodos(state,todos) {
         state.todos = todos
-    }
+    },
+    // Add a new todo to the todos state
+    // Unshift so the new todo gets put on the top
+    newTodo(state, todo){
+        state.todos.unshift(todo)
+    },
 }
 
 export default{

@@ -21,9 +21,8 @@ export default {
         ...mapActions(['fetchTodos'])  // Use spread operator to map the fetchTodos
     },
     // we use mapgetters within the computed property
-    computed: {
-        ...mapGetters(['allTodos'])
-    }, 
+    // different type of assigning mapgetters
+    computed: mapGetters(['allTodos']), 
 
     // use created method lifecycle to call in the fetchtodos when the component was first created
     created(){
@@ -45,5 +44,10 @@ export default {
     text-align: center;
     position: relative;
     cursor: pointer;
+    max-width: 400px;
+    max-height: 70px;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    overflow: hidden;
 }
 </style>
